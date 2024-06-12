@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 公共的spring-boot版本 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.qi</groupId>
+    <artifactId>dubbo-lession</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <!-- 设为 pom 表明这是一个聚合项目的父 POM，不生成具体的 JAR 或 WAR 文件 -->
+    <packaging>pom</packaging>
+
+    <!-- 子模块列表，这些模块将继承父 POM 的配置 -->
+    <modules>
+        <module>dubbo-01-api</module>
+        <module>dubbo-02-provider</module>
+        <module>dubbo-03-consumer</module>
+    </modules>
+
+    <!-- 公共版本管理 -->
+    <properties>
+        <java.version>17</java.version>
+        <dubbo.version>3.2.2</dubbo.version>
+        <spring.boot.version>3.3.0</spring.boot.version>
+        <lombok.version>1.18.32</lombok.version>
+    </properties>
+
+    <dependencies>
+        <!--
+            【spring-boot】
+            spring-boot的基本依赖，其中包括
+            Spring Core：Spring 框架的核心库，提供依赖注入（DI）和面向切面编程（AOP）的支持。
+            Spring Context：应用上下文模块，提供基于注释和 XML 的配置支持
+            Spring AOP：面向切面编程的支持库。
+            Logging：默认包含 SLF4J 和 Logback 用于日志记录。
+         -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!--
+            【spring-boot-test】
+            Spring Boot测试启动器: 包含进行单元和集成测试所需的所有依赖。
+            包括JUnit, Mockito, Spring Test等，支持广泛的测试功能。
+            设置test scope以确保这些依赖只在测试编译和执行阶段被使用。
+         -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+            【spring-boot-web】
+            Spring Boot Web Starter: 包括所有构建基于Spring MVC的web应用所需的依赖。
+            自动配置内嵌的Tomcat容器，适用于开发web应用和微服务。
+            包含Spring MVC, Tomcat, JSON转换等默认配置。
+         -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--
+            【lombok】
+             Lombok库
+         -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <!--
+            【boot-mybatis】
+             MyBatis Spring Boot Starter: 提供集成MyBatis框架的必需依赖。
+             自动配置数据源和SQL会话工厂，简化MyBatis与Spring Boot的集成。
+             适合需要通过MyBatis进行数据库操作的应用。
+         -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+
+        <!--
+            【mysql-jdbc】
+             MySQL JDBC 驱动依赖，连接mysql用
+         -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.2.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <!--
+            Spring Boot Maven 插件用于打包和运行 Spring Boot 应用程序。
+            它提供了很多方便的功能，如将应用打包为可执行的 JAR 或 WAR 文件，
+            以及提供 Maven 的 "spring-boot:run" 命令来直接运行 Spring Boot 应用。
+        -->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--
+        <dependencyManagement> 标签通常用在 Maven 项目的父 POM 文件中，用于定义项目中所有模块共享的依赖版本信息。
+        这样做的目的是为了在多个子模块中统一依赖版本，避免版本冲突和版本管理的复杂性。它不会实际引入这些依赖，而是定义了一个规范，
+        当子模块需要使用这些依赖时，只需要在子模块中声明依赖而无需指定版本。
+    -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version> <!-- dubbo 版本 -->
+                <type>pom</type> <!-- 指定依赖类型为 POM，这意味着此依赖项将作为一组依赖项的父 POM 进行导入 -->
+                <scope>import</scope> <!-- 使用 import 范围，这将允许子项目继承和使用这个依赖管理配置 -->
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

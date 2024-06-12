@@ -1,0 +1,33 @@
+# 定义Spring相关配置
+spring:
+  # 设置应用的名称
+  application:
+    name: dubbo-03-consumer
+  # 设置数据源相关配置
+  datasource:
+    # 设置数据源的URL
+    url: jdbc:mysql://localhost:3306/db_ysxt?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    # 设置数据源的用户名
+    username: root
+    # 设置数据源的密码
+    password: 123456
+    # 设置数据源的驱动类名
+    driver-class-name: com.mysql.cj.jdbc.Driver
+# 定义服务器相关配置
+server:
+  # 设置服务器的端口号
+  port: 8083
+# 定义MyBatis相关配置
+mybatis:
+  # 设置mapper文件的位置
+  mapper-locations: classpath*:mappers/**/*.xml
+# 定义Dubbo相关配置
+dubbo:
+  # 设置协议名称
+  protocol:
+    name: dubbo
+    # 设置端口号，-1表示自动分配【默认20880】
+    port: -1
+  # 设置应用的QOS开关
+  application:
+    qos-enable: false

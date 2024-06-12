@@ -1,0 +1,9 @@
+# 定义Spring相关配置
+spring:
+  application:
+    # 设置应用的名称
+    name: dubbo-01-api
+# 定义服务器相关配置
+server:
+  # 设置服务器的端口号
+  port: 8081

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <!-- 父项目的 groupId，指定父项目属于哪个组 -->
+        <groupId>com.qi</groupId>
+        <!-- 父项目的 artifactId，指定父项目的唯一标识 -->
+        <artifactId>dubbo-lession</artifactId>
+        <!-- 版本号，与父项目的版本保持一致 -->
+        <version>0.0.1-SNAPSHOT</version>
+        <!-- 相对路径指向父 POM 文件，通常用于多模块项目结构中定位父 POM -->
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+
+    <artifactId>dubbo-01-api</artifactId>
+
+    <dependencies>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
